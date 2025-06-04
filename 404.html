@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 - Page Not Found | HOOKD.</title>
+  <link rel="icon" type="image/png" href="/logo.png" /> <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --font-family-main: 'Inter', sans-serif;
+      --background-main: #0D1117;
+      --background-container: #161B22;
+      --accent-primary: #3b82f6;
+      --accent-primary-hover: #2563eb;
+      --accent-secondary: #8b5cf6; /* Purple accent */
+      --text-primary: #c9d1d9;
+      --text-secondary: #8b949e;
+      --text-on-accent: #ffffff;
+      --border-color-soft: rgba(139, 148, 158, 0.2);
+      --border-radius-md: 0.75rem; /* 12px */
+      --border-radius-lg: 1rem; /* 16px */
+      --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.3);
+      --shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.35);
+      --shadow-glow: 0 0 15px rgba(59, 130, 246, 0.4);
+      --transition-speed: 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      font-family: var(--font-family-main);
+      background-color: var(--background-main);
+      color: var(--text-primary);
+      width: 100%;
+      height: 100vh;
+      overflow: hidden; /* Prevent scrollbars on the 404 page itself */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .container-404 {
+      background-color: var(--background-container);
+      padding: 2.5rem 2rem;
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-medium), 0 0 30px rgba(0,0,0,0.5);
+      border: 1px solid var(--border-color-soft);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .icon-404 svg {
+      width: 80px;
+      height: 80px;
+      color: var(--accent-secondary); /* Using purple for the icon */
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5)); /* Purple glow */
+    }
+
+    h1 {
+      font-size: 3rem; /* Large 404 text */
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+     h1 span {
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        display: block;
+        margin-top: -0.5rem;
+        margin-bottom: 1.5rem;
+     }
+
+
+    p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .button-404 {
+      display: inline-block;
+      padding: 0.8rem 1.75rem;
+      font-size: 0.95rem;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: var(--text-on-accent);
+      border: none;
+      border-radius: var(--border-radius-md);
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed), opacity var(--transition-speed);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .button-404:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-medium), 0 0 15px var(--shadow-glow);
+      opacity: 0.95;
+    }
+     .button-404:active {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    @media (max-width: 600px) {
+      .container-404 {
+        padding: 2rem 1.5rem;
+      }
+      .icon-404 svg {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 1rem;
+      }
+      h1 {
+        font-size: 2.5rem;
+      }
+      h1 span {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+      p {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+      }
+      .button-404 {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container-404">
+    <div class="icon-404">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+        <path d="M12 9v4"></path>
+        <path d="M12 17h.01"></path>
+      </svg>
+    </div>
+    <h1>404 <span>Page Not Found</span></h1>
+    <p>
+      Oops! The page you're looking for seems to have taken a detour.
+      Let's get you back on track.
+    </p>
+    <a href="/dash.html" class="button-404">Go to Homepage</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,344 @@
+/* style.css - Redesigned for Login Page */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --font-family-main: 'Inter', sans-serif;
+  --background-main: #0D1117; /* Deep dark blue/grey */
+  --background-container: #161B22; /* Slightly lighter for login container */
+  --background-input: #0D1117;
+  --accent-primary: #3b82f6; /* Bright blue */
+  --accent-primary-hover: #2563eb;
+  --accent-secondary: #8b5cf6; /* Purple */
+  --accent-glow: rgba(59, 130, 246, 0.4); /* Soft blue glow */
+  --text-primary: #c9d1d9; /* Light grey for text */
+  --text-secondary: #8b949e; /* Medium grey */
+  --text-on-accent: #ffffff;
+  --border-color-soft: rgba(139, 148, 158, 0.2); /* Subtle border */
+  --border-color-strong: rgba(139, 148, 158, 0.4);
+  --border-radius-md: 0.75rem; /* 12px */
+  --border-radius-lg: 1rem; /* 16px */
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.35);
+  --shadow-glow: 0 0 15px var(--accent-glow);
+  --transition-speed: 0.3s ease;
+}
+
+/* Reset and Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  font-family: var(--font-family-main);
+  background-color: var(--background-main);
+  color: var(--text-primary);
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Body Layout */
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Login Container */
+.login-container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch; /* Make children take full height */
+  justify-content: center;
+  max-width: 1100px; /* Slightly reduced max-width */
+  width: 100%;
+  background-color: var(--background-container);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-medium), 0 0 30px rgba(0,0,0,0.5);
+  overflow: hidden;
+  border: 1px solid var(--border-color-soft);
+}
+
+/* Illustration Section */
+.login-illustration {
+  flex: 1.2; /* Give slightly more space to illustration */
+  background: linear-gradient(160deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 3rem; /* Adjusted padding */
+  text-align: center;
+  /* border-right: 1px solid var(--border-color-soft); */ /* Removed border, using gradient contrast */
+}
+
+.login-illustration img {
+  width: 280px; /* Slightly larger */
+  margin-bottom: 2rem;
+  max-width: 100%;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+}
+
+.login-illustration h1 {
+  font-size: 2rem; /* Larger text */
+  color: var(--text-on-accent);
+  font-weight: 700;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Login Box */
+.login-box {
+  flex: 1;
+  padding: 3rem 3.5rem; /* Increased padding */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--background-container);
+}
+
+.login-box h2 { /* Title for Login/Sign Up */
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Form */
+#authForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Increased gap */
+}
+
+#authForm input[type="email"],
+#authForm input[type="password"] {
+  padding: 1rem 1.25rem; /* Adjusted padding */
+  font-size: 1rem;
+  font-family: var(--font-family-main);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--border-color-strong);
+  background: var(--background-input);
+  color: var(--text-primary);
+  width: 100%;
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+#authForm input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--accent-glow), inset 0 0 5px rgba(0,0,0,0.2);
+}
+
+/* Submit Button */
+#authForm button[type="submit"] {
+  padding: 1rem 1.25rem;
+  font-size: 1.05rem; /* Slightly larger font */
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: var(--text-on-accent);
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed), opacity var(--transition-speed);
+  box-shadow: var(--shadow-soft);
+}
+#authForm button[type="submit"]:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-medium), 0 0 15px var(--accent-glow);
+  opacity: 0.95;
+}
+#authForm button[type="submit"]:active {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-soft);
+}
+#authForm button[type="submit"]:disabled {
+  background: var(--text-secondary);
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Toggle & Links */
+#authToggle {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+#authToggle a, #forgotLink {
+  color: var(--accent-primary);
+  cursor: pointer;
+  text-decoration: none; /* Remove underline by default */
+  font-weight: 500;
+  transition: color var(--transition-speed);
+}
+#authToggle a:hover, #forgotLink:hover {
+  color: var(--accent-primary-hover);
+  text-decoration: underline; /* Underline on hover */
+}
+#forgotPassword {
+  text-align: center;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+}
+
+
+/* Divider */
+.divider {
+  text-align: center;
+  margin: 2rem 0;
+  color: var(--text-secondary);
+  font-size: 0.85rem; /* Smaller divider text */
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.divider::before, .divider::after {
+  content: '';
+  height: 1px;
+  background: var(--border-color-soft);
+  position: absolute;
+  top: 50%;
+  width: calc(50% - 25px); /* Adjust width based on text */
+}
+.divider::before { left: 0; }
+.divider::after { right: 0; }
+
+/* Social Login */
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem; /* Increased gap */
+}
+.socials button {
+  background: var(--background-input);
+  border: 1px solid var(--border-color-strong);
+  border-radius: var(--border-radius-md);
+  padding: 0.75rem; /* Square padding for icon buttons */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center icon */
+  box-shadow: none; /* Cleaner look */
+  transition: background-color var(--transition-speed), border-color var(--transition-speed), transform var(--transition-speed);
+  width: 50px; /* Fixed width */
+  height: 50px; /* Fixed height */
+}
+.socials button:hover {
+  transform: translateY(-3px) scale(1.05);
+  background-color: var(--background-main);
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-glow);
+}
+.socials img {
+  width: 24px; /* Adjusted icon size */
+  height: 24px;
+}
+
+/* Terms */
+.terms {
+  margin-top: 2.5rem; /* Increased margin */
+  font-size: 0.8rem; /* Smaller terms text */
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.5;
+}
+.terms a {
+  color: var(--text-secondary); /* Match surrounding text color */
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color var(--transition-speed);
+}
+.terms a:hover {
+  color: var(--accent-primary);
+}
+
+/* Auth Feedback */
+#authFeedback {
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 1.25rem;
+  padding: 0.75rem;
+  border-radius: var(--border-radius-sm);
+  transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+#authFeedback:not(.hidden) { /* Styles when feedback is shown */
+  background-color: var(--background-main);
+  border: 1px solid var(--border-color-soft);
+}
+/* Specific colors are set in JS, but we can ensure text is primary by default */
+#authFeedback.hidden {
+  opacity: 0;
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  overflow: hidden;
+}
+
+/* Mobile Header (if you choose to use it) */
+.mobile-header {
+  display: none; /* Hidden by default, enable in media query if needed */
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem; /* Space it out from content */
+  padding-top: 1rem;
+}
+.mobile-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--border-radius-sm);
+}
+.mobile-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 900px) { /* Adjusted breakpoint */
+  .login-illustration {
+    display: none; /* Hide illustration on smaller screens */
+  }
+  .login-container {
+    flex-direction: column;
+    max-width: 480px; /* Max width for single column form */
+    box-shadow: var(--shadow-medium); /* Keep shadow for mobile */
+  }
+  .login-box {
+    padding: 2.5rem; /* Adjust padding for mobile */
+    border-radius: var(--border-radius-lg); /* Ensure rounding if container changes */
+  }
+}
+
+@media (max-width: 500px) {
+  body {
+    padding: 1rem; /* Reduce body padding on very small screens */
+  }
+  .login-box {
+    padding: 2rem 1.5rem; /* Further adjust padding */
+  }
+  .login-box h2 {
+    font-size: 1.6rem;
+  }
+  #authForm input[type="email"],
+  #authForm input[type="password"],
+  #authForm button[type="submit"] {
+    padding: 0.9rem 1rem;
+    font-size: 0.95rem;
+  }
+  .mobile-header { /* Show mobile header on small screens */
+      display: flex;
+  }
+}
+
+/* Utility class from your original index.html style block */
+.hidden {
+  display: none !important; /* Ensure it overrides other display properties */
+}

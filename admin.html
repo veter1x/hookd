@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VETERIS.</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+    <div id="admin-login-container">
+        <h2>Admin Login</h2>
+        <form id="adminLoginForm">
+            <div>
+                <label for="adminUsername">Username:</label>
+                <input type="email" id="adminUsername">
+            </div>
+            <div>
+                <label for="adminPassword">Password:</label>
+                <input type="password" id="adminPassword">
+            </div> 
+            <button type="submit">Login</button>
+            <p id="adminLoginError" class="error-message" style="display: none;"></p>
+        </form>
+    </div>
+
+    <div id="admin-panel-container" style="display: none;">
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <img src="logo.png" alt="HOOKD Logo"/>
+                <span>VETERIS</span>
+            </div>
+            <nav class="admin-menu">
+                <button data-tab="dashboard" class="active"><i data-lucide="layout-dashboard"></i> Dashboard</button>
+                <button data-tab="users"><i data-lucide="users"></i> Users</button>
+                <button data-tab="campaigns"><i data-lucide="volume-2"></i> Campaigns (Public)</button>
+                <button data-tab="submissions"><i data-lucide="file-check"></i> Submissions</button>
+                <button data-tab="user-campaigns"><i data-lucide="layers"></i> User Campaigns</button>
+                <button id="adminLogoutBtn"><i data-lucide="log-out"></i> Logout</button>
+            </nav>
+        </aside>
+        <main class="admin-main-content">
+            <section id="dashboard" class="admin-tab-section active">
+                <h1>Admin Dashboard</h1>
+                <p>Welcome to the admin panel. Overview statistics and charts are below.</p>
+
+                <div class="admin-stats-cards">
+                    <div class="admin-stat-card">
+                        <div class="stat-card-icon-container bg-blue-100 text-blue-600">
+                           <i data-lucide="users"></i>
+                        </div>
+                        <div class="stat-card-content">
+                            <h4 id="totalUsersCardTitle">Total Users</h4>
+                            <p id="totalUsersCardValue">0</p>
+                        </div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="stat-card-icon-container bg-green-100 text-green-600">
+                            <i data-lucide="volume-2"></i>
+                        </div>
+                        <div class="stat-card-content">
+                            <h4 id="totalPublicCampaignsCardTitle">Public Campaigns</h4>
+                            <p id="totalPublicCampaignsCardValue">0</p>
+                        </div>
+                    </div>
+                    <div class="admin-stat-card">
+                         <div class="stat-card-icon-container bg-yellow-100 text-yellow-600">
+                            <i data-lucide="file-check-2"></i>
+                        </div>
+                        <div class="stat-card-content">
+                            <h4 id="totalSubmissionsCardTitle">Total Submissions</h4>
+                            <p id="totalSubmissionsCardValue">0</p>
+                        </div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="stat-card-icon-container bg-red-100 text-red-600">
+                            <i data-lucide="alert-circle"></i>
+                        </div>
+                        <div class="stat-card-content">
+                            <h4 id="pendingSubmissionsCardTitle">Pending Submissions</h4>
+                            <p id="pendingSubmissionsCardValue">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="admin-charts-grid">
+                    <div class="admin-chart-container card">
+                        <div class="card-header">
+                            <h4 class="card-title">Submissions by Status</h4>
+                        </div>
+                        <div class="card-body">
+                            <div id="submissionsByStatusChart" style="min-height: 350px;"></div>
+                        </div>
+                    </div>
+                    <div class="admin-chart-container card">
+                        <div class="card-header">
+                            <h4 class="card-title">Users Joined Over Time</h4>
+                        </div>
+                        <div class="card-body">
+                            <div id="usersOverTimeChart" style="min-height: 350px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <section id="users" class="admin-tab-section">
+                <h2>User Management</h2>
+                <div class="admin-filters">
+                    <input type="text" id="userSearchInput" placeholder="Search by email or UID...">
+                </div>
+                <div id="usersTableContainer"></div>
+            </section>
+            <section id="campaigns" class="admin-tab-section">
+                <h2>Public Campaign Management</h2>
+                 <div class="admin-filters">
+                    <input type="text" id="publicCampaignSearchInput" placeholder="Search by title or ID...">
+                    <select id="publicCampaignStatusFilter">
+                        <option value="">All Statuses</option>
+                        <option value="active">Active</option>
+                        <option value="pending_review">Pending Review</option>
+                        <option value="rejected">Rejected</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+                <div id="publicCampaignsTableContainer"></div>
+            </section>
+            <section id="submissions" class="admin-tab-section">
+                <h2>Submission Management</h2>
+                <div class="admin-filters">
+                    <input type="text" id="submissionSearchInput" placeholder="Search by campaign ID or user ID...">
+                    <select id="submissionStatusFilter">
+                        <option value="">All Statuses</option>
+                        <option value="pending_verification">Pending Verification</option>
+                        <option value="verified">Verified</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                </div>
+                <div id="submissionsTableContainer"></div>
+            </section>
+            <section id="user-campaigns" class="admin-tab-section">
+                <h2>User-Created Campaign Management</h2>
+                <p>This section will allow viewing/managing campaigns stored within individual user documents.</p>
+                <div class="admin-filters">
+                    <input type="text" id="userCampaignSearchInput" placeholder="Search by user ID or campaign title...">
+                </div>
+                <div id="userCampaignsTableContainer"></div>
+            </section>
+        </main>
+    </div>
+    <div id="adminToastContainer"></div>
+
+    <script src="admin.js" type="module"></script>
+</body>
+</html>

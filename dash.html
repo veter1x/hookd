@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HOOKD.</title>
+<link rel="icon" type="image/png" href="logo.png" />
+<link href="dashboard.css" rel="stylesheet"/>
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+<div id="toast-container"></div>
+
+<div class="dashboard">
+<aside class="sidebar oval">
+  <div class="logo-icon">
+    <img alt="HOOKD Logo" src="logo.png"/>
+  </div>
+  <nav class="menu">
+    <button aria-label="Overview" class="active" data-tab="overview">
+      <i data-lucide="home"></i>
+      <span class="tooltip">Overview</span>
+    </button>
+    <button aria-label="Create Hooks" data-tab="create">
+      <i data-lucide="plus-circle"></i>
+      <span class="tooltip">Create Campaign</span>
+    </button>
+    <button aria-label="My Hooks" data-tab="campaigns">
+      <i data-lucide="layers"></i>
+      <span class="tooltip">My Hooks</span>
+    </button>
+    <button aria-label="Earn Money" data-tab="earn">
+      <i data-lucide="activity"></i>
+      <span class="tooltip">Earn Money</span>
+    </button>
+    <button aria-label="Wallet" data-tab="wallet">
+      <i data-lucide="wallet"></i>
+      <span class="tooltip">Wallet</span>
+    </button>
+    <button aria-label="Profile" data-tab="profile">
+      <i data-lucide="user"></i>
+      <span class="tooltip">Profile</span>
+    </button>
+  </nav>
+  <div class="bottom-actions">
+    <a aria-label="Help" href="mailto:veteris@hookd.one">
+      <button>
+        <i data-lucide="help-circle"></i>
+      </button>
+    </a>
+    <button aria-label="Language">
+      EN
+    </button>
+  </div>
+</aside>
+
+<main class="main-content">
+  <main class="main-content">
+  <section class="tab-section active" id="overview">
+    <h1>HOOKD.</h1>
+
+    <div id="pendingVerificationsBanner" class="notification-banner" style="display: none;">
+      <p>You have <strong id="pendingVerificationCount">0</strong> engagement submissions pending your review.
+      <a href="#" id="viewPendingVerificationsLink">Go to "My Campaigns" to manage them.</a></p>
+    </div>
+
+    <div id="emailVerificationBanner" class="notification-banner warning-banner" style="display: none;">
+      <p>Your email address is not verified. Please check your inbox for a verification link or
+      <button id="resendVerificationEmailBtn" class="button-link-style">resend the verification email</button>.</p>
+    </div>
+    <div class="cards">
+      <div class="card" id="walletBalanceCard">Wallet Balance: ₹0</div>
+      <div class="card" id="campaignsRunningCard">Total Campaigns: 0</div>
+      <div class="card" id="totalViewsCard">Total Views Earned: 0</div>
+    </div>
+  </section>
+
+  <section class="tab-section" id="create">
+    <h2>Create a New Hook</h2>
+    <form class="campaign-form">
+      <div>
+        <input name="url" placeholder="YouTube Video URL" required type="text" />
+        <span class="error-message" id="url-error" style="display: block; min-height: 1.2em;"></span>
+      </div>
+      <div>
+        <input name="views" placeholder="Target Views (e.g. 5000)" required type="number" />
+        <span class="error-message" id="views-error" style="display: block; min-height: 1.2em;"></span>
+      </div>
+      <div>
+        <textarea name="desc" placeholder="Brief Description (10-200 characters)" required></textarea>
+        <span class="error-message" id="desc-error" style="display: block; min-height: 1.2em;"></span>
+      </div>
+      <button type="submit">Submit Hook</button>
+    </form>
+  </section>
+
+  <section class="tab-section" id="campaigns">
+    <h2>My Hooks</h2>
+    <button onclick="forceLoad()" style="margin-bottom: 1rem; padding: 0.5rem 1rem; background-color: #3b82f6; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">Force Load Campaigns</button>
+    <div id="campaignsList" class="campaigns-grid">
+      <p data-no-campaigns-message="true">You haven't created any campaigns yet. Click 'Create' to launch one!</p>
+    </div>
+  </section>
+
+  <section class="tab-section" id="earn">
+    <h2>Available Hooks to Engage With</h2>
+    <div id="earnCampaignsList" class="campaigns-grid">
+      <p data-no-campaigns-message="true">No hooks available at the moment. Check back soon!</p>
+    </div>
+  </section>
+
+  <section class="tab-section" id="wallet">
+    <h2>Wallet</h2>
+    <button onclick="addFunds()">Add Funds</button>
+    <button onclick="withdrawFunds()">Withdraw ₹500</button>
+    <p>Transaction history will appear here.</p>
+    </section>
+
+  <section class="tab-section" id="profile">
+    <h2>Profile & Settings</h2>
+    <div id="profileInfo" style="margin-top: 1.5rem; font-size: 1.08rem;">
+        </div>
+    <button id="logoutBtn"
+      style="margin-top: 2rem; padding: 0.75rem 2rem; background: #ef4444; color: white; border: none; border-radius: 1rem; font-weight: bold; font-size: 1rem; cursor: pointer; transition: background 0.2s; box-shadow: 0 2px 12px rgba(239, 68, 68, 0.10);"
+      onmouseover="this.style.background='#b91c1c'"
+      onmouseout="this.style.background='#ef4444'">
+      Log out
+    </button>
+  </section>
+</main>
+</main> </div>
+
+<script src="firebase-dashboard.js" type="module"></script>
+
+<div id="engagementModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="modal-close-button">×</span>
+    <h3 id="modalCampaignTitle">HOOK UP</h3>
+    <div class="modal-campaign-details">
+      <h4>Original Content Details:</h4>
+      <p id="modalCampaignDescription">Full description of the campaign will load here...</p>
+      <p><strong>Original Link:</strong> <a id="modalCampaignOriginalLink" href="#" target="_blank">Link will appear here</a></p>
+    </div>
+    <hr class="modal-hr">
+    <div class="modal-engagement-instructions">
+      <h4>Your Task:</h4>
+      <p>Create either a YouTube Short or an Instagram Reel inspired by or promoting the content above. No other formats will be accepted.</p>
+    </div>
+    <div class="modal-submission-form">
+      <label for="engagementLinkInput">Paste the link to your YouTube Short or Instagram Reel:</label>
+      <input type="url" id="engagementLinkInput" name="engagementLink" placeholder="e.g., https://youtube.com/shorts/your-short-id" required>
+      <span class="error-message" id="engagementLinkError" style="display: block; min-height: 1.2em;"></span>
+      <button id="submitEngagementButton" class="button-primary">Submit My Engagement</button>
+    </div>
+  </div>
+</div>
+<div id="manageSubmissionsModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="modal-close-button" id="closeManageSubmissionsModal">×</span>
+    <h3 id="manageSubmissionsModalTitle">Submissions for: Campaign Title</h3>
+    <div id="submissionsListContainer" class="submissions-list">
+      <p>Loading submissions...</p>
+    </div>
+  </div>
+</div>
+<div id="editCampaignModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="modal-close-button" id="closeEditCampaignModal">×</span>
+    <h3>Edit Campaign</h3>
+    <form id="editCampaignForm" class="campaign-form modal-form-layout"> <input type="hidden" id="editCampaignId" name="campaignId"> <div>
+        <label for="editCampaignUrl">Campaign URL:</label>
+        <input type="url" id="editCampaignUrl" name="url" placeholder="e.g., http://example.com/video" required />
+        <span class="error-message" id="editCampaignUrlError" style="display: block; min-height: 1.2em;"></span>
+      </div>
+      
+      <div>
+        <label for="editCampaignViews">Target Views:</label>
+        <input type="number" id="editCampaignViews" name="views" placeholder="e.g., 5000" required />
+        <span class="error-message" id="editCampaignViewsError" style="display: block; min-height: 1.2em;"></span>
+      </div>
+      
+      <div>
+        <label for="editCampaignDesc">Description (10-200 characters):</label>
+        <textarea id="editCampaignDesc" name="desc" placeholder="Brief Description" required></textarea>
+        <span class="error-message" id="editCampaignDescError" style="display: block; min-height: 1.2em;"></span>
+      </div>
+      
+      <button type="submit" id="saveCampaignChangesButton" class="button-primary">Save Changes</button>
+    </form>
+  </div>
+</div>
+
+
+</body>
+</html>

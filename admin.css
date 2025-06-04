@@ -1,0 +1,738 @@
+/* admin.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Dark Theme Palette */
+    --admin-bg: #12181b; /* Very dark desaturated cyan/blue */
+    --admin-sidebar-bg: #1a2226; /* Slightly lighter dark for sidebar */
+    --admin-card-bg: #1f292e; /* Card background */
+    --admin-header-bg: #243036; /* For table headers or card headers */
+
+    --admin-text-primary: #e1e8eb; /* Light grey for primary text */
+    --admin-text-secondary: #b0bec5; /* Dimmer light grey for secondary text */
+    --admin-text-disabled: #78909c; /* For disabled states */
+
+    --admin-primary: #66a3d2; /* A calm, refined blue - Lighter for dark theme */
+    --admin-primary-hover: #548db8; /* Darker shade of primary */
+    --admin-primary-focus-shadow: rgba(102, 163, 210, 0.25);
+
+    --admin-accent: #e57373; /* Soft red for accents/errors */
+    --admin-accent-hover: #d35f5f;
+    --admin-accent-light-bg: rgba(229, 115, 115, 0.1); /* Light background for error elements */
+
+    --admin-success: #81c784; /* Soft green for success */
+    --admin-success-light-bg: rgba(129, 199, 132, 0.1);
+
+    --admin-warning: #ffd54f; /* Soft yellow for warning */
+    --admin-warning-light-bg: rgba(255, 213, 79, 0.1);
+    --admin-warning-text: #795548; /* Darker text for on yellow bg */
+
+
+    --admin-border-color: #37474f; /* Subtle border color */
+    --admin-input-bg: #263238; /* Dark background for inputs */
+    --admin-input-border: #455a64; /* Border for inputs */
+    --admin-input-focus-border: var(--admin-primary);
+
+    --admin-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.15);
+    --admin-shadow-md: 0 4px 10px rgba(0, 0, 0, 0.25); /* Main shadow for cards */
+    --admin-shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.3); /* Larger shadow for elevation */
+
+    --admin-font: 'Inter', sans-serif;
+    --admin-card-radius: 16px; /* More rounded corners */
+    --admin-button-radius: 10px; /* Button radius */
+    --admin-input-radius: 10px; /* Input radius */
+
+    /* Spacing - increased for more spaciousness */
+    --space-xxs: 4px;
+    --space-xs: 8px;
+    --space-sm: 12px;
+    --space-md: 20px;
+    --space-lg: 28px;
+    --space-xl: 36px;
+    --space-xxl: 52px;
+
+    /* Transitions */
+    --admin-transition-smooth: all 0.25s ease-in-out;
+}
+
+body {
+    margin: 0;
+    font-family: var(--admin-font);
+    background-color: var(--admin-bg);
+    color: var(--admin-text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 15px; /* Slightly increased base font size */
+    line-height: 1.7; /* Increased line height */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#admin-login-container {
+    background-color: var(--admin-card-bg);
+    padding: var(--space-xl) var(--space-xxl); /* Increased padding */
+    border-radius: var(--admin-card-radius);
+    box-shadow: var(--admin-shadow-lg);
+    width: 100%;
+    max-width: 480px; /* Slightly wider */
+    text-align: center;
+}
+
+#admin-login-container h2 {
+    margin-top: 0;
+    margin-bottom: var(--space-lg);
+    color: var(--admin-text-primary);
+    font-size: 1.8rem; /* Larger */
+    font-weight: 600;
+}
+
+#adminLoginForm div {
+    margin-bottom: var(--space-md);
+    text-align: left;
+}
+
+#adminLoginForm label {
+    display: block;
+    margin-bottom: var(--space-sm); /* Increased margin */
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--admin-text-secondary);
+}
+
+#adminLoginForm input[type="email"],
+#adminLoginForm input[type="password"] {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md); /* Increased padding */
+    border: 1px solid var(--admin-input-border);
+    background-color: var(--admin-input-bg);
+    color: var(--admin-text-primary);
+    border-radius: var(--admin-input-radius);
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+#adminLoginForm input[type="email"]:focus,
+#adminLoginForm input[type="password"]:focus {
+    border-color: var(--admin-input-focus-border);
+    box-shadow: 0 0 0 3.5px var(--admin-primary-focus-shadow); /* Softer focus shadow */
+    outline: none;
+    background-color: var(--admin-card-bg); /* Lighten input bg on focus */
+}
+
+#adminLoginForm button[type="submit"] {
+    background-color: var(--admin-primary);
+    color: var(--admin-text-primary); /* Ensuring contrast */
+    border: none;
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--admin-button-radius);
+    font-size: 1.05rem; /* Slightly larger */
+    font-weight: 600; /* Bolder */
+    cursor: pointer;
+    transition: var(--admin-transition-smooth);
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.8px; /* More letter spacing */
+    margin-top: var(--space-sm); /* Space above button */
+}
+
+#adminLoginForm button[type="submit"]:hover {
+    background-color: var(--admin-primary-hover);
+    transform: translateY(-2px); /* Subtle lift */
+    box-shadow: var(--admin-shadow-md);
+}
+
+#adminLoginForm button[type="submit"]:disabled {
+    background-color: var(--admin-text-disabled);
+    color: var(--admin-bg);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.error-message {
+    color: var(--admin-accent);
+    background-color: var(--admin-accent-light-bg);
+    padding: var(--space-sm);
+    border-radius: var(--admin-input-radius);
+    border: 1px solid var(--admin-accent);
+    font-size: 0.9rem;
+    margin-top: var(--space-md); /* Increased margin */
+    text-align: center;
+}
+
+#admin-panel-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--admin-bg);
+}
+
+.admin-sidebar {
+    width: 280px; /* Wider sidebar */
+    background-color: var(--admin-sidebar-bg);
+    color: var(--admin-text-primary);
+    padding: var(--space-lg) 0; /* Vertical padding */
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    box-shadow: 3px 0 15px rgba(0,0,0,0.2); /* Softer, darker shadow */
+    transition: width 0.3s ease;
+}
+
+.admin-logo {
+    display: flex;
+    align-items: center;
+    padding: 0 var(--space-lg) var(--space-lg) var(--space-lg);
+    border-bottom: 1px solid var(--admin-border-color);
+}
+
+.admin-logo img {
+    width: 42px; /* Larger logo */
+    height: 42px;
+    margin-right: var(--space-md); /* Increased margin */
+    border-radius: var(--admin-button-radius); /* Consistent radius */
+}
+
+.admin-logo span {
+    font-size: 1.5rem; /* Larger */
+    font-weight: 700; /* Bolder */
+    letter-spacing: 0.8px;
+    color: var(--admin-text-primary);
+}
+
+.admin-menu {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-top: var(--space-md);
+}
+
+.admin-menu button {
+    background: none;
+    border: none;
+    color: var(--admin-text-secondary); /* Default item color */
+    padding: var(--space-md) var(--space-lg); /* Increased padding */
+    text-align: left;
+    font-size: 1rem; /* Larger font */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--space-md); /* Increased gap */
+    transition: var(--admin-transition-smooth);
+    border-left: 4px solid transparent; /* For active indicator */
+    margin: var(--space-xxs) var(--space-sm) var(--space-xxs) 0; /* Margin for spacing, no right margin */
+    border-radius: 0 var(--admin-button-radius) var(--admin-button-radius) 0; /* Rounded on right */
+}
+
+.admin-menu button i {
+    width: 22px; /* Larger icons */
+    height: 22px;
+    stroke-width: 2;
+    color: var(--admin-text-secondary); /* Default icon color */
+    transition: color 0.2s;
+}
+
+.admin-menu button:hover {
+    background-color: rgba(255, 255, 255, 0.03); /* Very subtle hover */
+    color: var(--admin-text-primary);
+    border-left-color: var(--admin-primary-hover); /* Subtle indicator on hover */
+}
+.admin-menu button:hover i {
+    color: var(--admin-primary); /* Icon color on hover */
+}
+
+.admin-menu button.active {
+    background-color: var(--admin-primary-focus-shadow); /* Primary color with low opacity */
+    color: var(--admin-primary);
+    font-weight: 600; /* Bolder for active */
+    border-left: 4px solid var(--admin-primary);
+}
+
+.admin-menu button.active i {
+    color: var(--admin-primary);
+}
+
+.admin-menu button#adminLogoutBtn {
+    margin-top: auto; /* Pushes to bottom */
+    border-top: 1px solid var(--admin-border-color);
+    border-radius: 0; /* No radius for logout if it spans width */
+    border-left: 4px solid transparent; /* Reset border */
+}
+
+.admin-menu button#adminLogoutBtn:hover {
+    background-color: var(--admin-accent-light-bg);
+    color: var(--admin-accent);
+    border-left-color: var(--admin-accent);
+}
+
+.admin-menu button#adminLogoutBtn:hover i {
+    color: var(--admin-accent);
+}
+
+.admin-main-content {
+    flex: 1;
+    padding: var(--space-xl); /* Increased padding */
+    overflow-y: auto;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.admin-tab-section {
+    display: none;
+    animation: adminFadeIn 0.5s ease-out; /* Slightly smoother fade */
+}
+
+.admin-tab-section.active {
+    display: block;
+}
+
+@keyframes adminFadeIn {
+    from { opacity: 0; transform: translateY(20px); } /* Increased translate */
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.admin-main-content h1, .admin-main-content h2 {
+    color: var(--admin-text-primary);
+    border-bottom: 1px solid var(--admin-border-color);
+    padding-bottom: var(--space-md);
+    margin-top: 0;
+    margin-bottom: var(--space-lg);
+    font-weight: 600;
+}
+
+.admin-main-content h1 { font-size: 2rem; } /* Larger */
+.admin-main-content h2 { font-size: 1.7rem; } /* Larger */
+
+/* Updated Admin Stats Cards Styles */
+.admin-stats-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Min card width */
+    gap: var(--space-lg); /* Increased gap */
+    margin-bottom: var(--space-xl);
+}
+
+.admin-stat-card {
+    background-color: var(--admin-card-bg);
+    padding: var(--space-lg); /* More padding */
+    border-radius: var(--admin-card-radius);
+    box-shadow: var(--admin-shadow-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg); /* Space between icon and text */
+    transition: var(--admin-transition-smooth);
+    border: 1px solid transparent; /* For hover effect */
+}
+
+.admin-stat-card:hover {
+    transform: translateY(-4px); /* Lift effect */
+    box-shadow: var(--admin-shadow-lg); /* Enhanced shadow on hover */
+    border-color: var(--admin-primary); /* Subtle border highlight */
+}
+
+.stat-card-icon-container {
+    flex-shrink: 0;
+    width: 56px; /* Icon container size */
+    height: 56px;
+    border-radius: 50%; /* Circular icon background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--admin-transition-smooth);
+}
+
+.stat-card-icon-container i {
+    width: 28px; /* Icon size */
+    height: 28px;
+    stroke-width: 2; /* Adjusted for visibility */
+}
+
+/* Specific icon container colors for Dark Theme */
+.stat-card-icon-container.bg-blue-100 { background-color: rgba(102, 163, 210, 0.2); }
+.stat-card-icon-container.text-blue-600 i { color: #66a3d2; }
+
+.stat-card-icon-container.bg-green-100 { background-color: rgba(129, 199, 132, 0.2); }
+.stat-card-icon-container.text-green-600 i { color: #81c784; }
+
+.stat-card-icon-container.bg-yellow-100 { background-color: rgba(255, 213, 79, 0.15); }
+.stat-card-icon-container.text-yellow-600 i { color: #ffd54f; }
+
+.stat-card-icon-container.bg-red-100 { background-color: rgba(229, 115, 115, 0.15); }
+.stat-card-icon-container.text-red-600 i { color: #e57373; }
+
+.stat-card-content h4 {
+    font-size: 0.9rem;
+    color: var(--admin-text-secondary); /* Muted color for title */
+    margin-bottom: var(--space-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-card-content p {
+    font-size: 2rem; /* Larger value text */
+    font-weight: 700; /* Bolder */
+    color: var(--admin-text-primary);
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* Chart Section Styles */
+.admin-charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); /* Responsive charts */
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.admin-chart-container.card {
+    background-color: var(--admin-card-bg);
+    border-radius: var(--admin-card-radius);
+    box-shadow: var(--admin-shadow-md);
+    overflow: hidden;
+    border: 1px solid var(--admin-border-color);
+}
+
+.admin-chart-container .card-header {
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 1px solid var(--admin-border-color);
+    background-color: var(--admin-header-bg); /* Darker header */
+}
+
+.admin-chart-container .card-title {
+    font-size: 1.25rem; /* Slightly larger title */
+    font-weight: 600;
+    color: var(--admin-text-primary);
+    margin: 0;
+}
+
+.admin-chart-container .card-body {
+    padding: var(--space-lg); /* Ample padding for chart */
+}
+
+/* ApexCharts specific styling for dark theme */
+.apexcharts-tooltip.apexcharts-theme-light { /* The theme class might be fixed, override its styles */
+    background: var(--admin-card-bg) !important;
+    border: 1px solid var(--admin-border-color) !important;
+    color: var(--admin-text-primary) !important;
+    box-shadow: var(--admin-shadow-md) !important;
+    border-radius: var(--admin-input-radius) !important;
+}
+.apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title {
+    background: var(--admin-header-bg) !important;
+    border-bottom: 1px solid var(--admin-border-color) !important;
+    color: var(--admin-text-primary) !important;
+    font-weight: 600 !important;
+    padding: var(--space-sm) var(--space-md) !important;
+    font-size: 0.95rem !important;
+}
+.apexcharts-tooltip-series-group {
+    padding: var(--space-xs) var(--space-md) !important;
+}
+.apexcharts-tooltip-text-value, .apexcharts-tooltip-text-label {
+     font-family: var(--admin-font) !important;
+}
+
+.apexcharts-xaxis-label, .apexcharts-yaxis-label,
+.apexcharts-title-text, .apexcharts-subtitle-text {
+    fill: var(--admin-text-secondary) !important;
+    font-family: var(--admin-font) !important;
+    font-weight: 500;
+}
+.apexcharts-legend-text {
+    color: var(--admin-text-secondary) !important;
+    font-family: var(--admin-font) !important;
+    font-size: 13px !important;
+}
+.apexcharts-gridline {
+    stroke: var(--admin-border-color) !important;
+}
+
+
+.admin-filters {
+    display: flex;
+    gap: var(--space-md); /* Increased gap */
+    margin-bottom: var(--space-lg);
+    align-items: center;
+    padding: var(--space-md);
+    background-color: var(--admin-card-bg);
+    border-radius: var(--admin-card-radius);
+    box-shadow: var(--admin-shadow-sm);
+    border: 1px solid var(--admin-border-color);
+}
+
+.admin-filters input[type="text"],
+.admin-filters select {
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--admin-input-border);
+    background-color: var(--admin-input-bg);
+    color: var(--admin-text-primary);
+    border-radius: var(--admin-input-radius);
+    font-size: 0.95rem;
+    min-width: 240px; /* Wider */
+    transition: var(--admin-transition-smooth);
+    box-sizing: border-box;
+}
+
+.admin-filters input[type="text"]::placeholder,
+.admin-filters select { /* For select, the first option can act as placeholder */
+    color: var(--admin-text-secondary);
+}
+.admin-filters select option {
+    background-color: var(--admin-input-bg);
+    color: var(--admin-text-primary);
+}
+
+
+.admin-filters input[type="text"]:focus,
+.admin-filters select:focus {
+    border-color: var(--admin-input-focus-border);
+    background-color: var(--admin-card-bg); /* Lighten on focus */
+    box-shadow: 0 0 0 3.5px var(--admin-primary-focus-shadow);
+    outline: none;
+}
+
+/* Table Styling */
+#usersTableContainer table,
+#publicCampaignsTableContainer table,
+#submissionsTableContainer table,
+#userCampaignsTableContainer table {
+    width: 100%;
+    border-collapse: separate; /* Changed for border-spacing and rounded corners */
+    border-spacing: 0;
+    margin-top: var(--space-lg);
+    background-color: var(--admin-card-bg);
+    box-shadow: var(--admin-shadow-md);
+    border-radius: var(--admin-card-radius);
+    overflow: hidden; /* For rounded corners on table */
+    border: 1px solid var(--admin-border-color);
+}
+
+#usersTableContainer th, #usersTableContainer td,
+#publicCampaignsTableContainer th, #publicCampaignsTableContainer td,
+#submissionsTableContainer th, #submissionsTableContainer td,
+#userCampaignsTableContainer th, #userCampaignsTableContainer td {
+    border-bottom: 1px solid var(--admin-border-color);
+    padding: var(--space-md) var(--space-lg); /* Increased padding */
+    text-align: left;
+    font-size: 0.95rem; /* Slightly larger */
+    vertical-align: middle;
+    color: var(--admin-text-secondary); /* Default cell text */
+}
+#usersTableContainer td,
+#publicCampaignsTableContainer td,
+#submissionsTableContainer td,
+#userCampaignsTableContainer td {
+    color: var(--admin-text-primary); /* Primary text for actual data cells */
+}
+
+
+#usersTableContainer th,
+#publicCampaignsTableContainer th,
+#submissionsTableContainer th,
+#userCampaignsTableContainer th {
+    background-color: var(--admin-header-bg); /* Darker header for tables */
+    font-weight: 600;
+    color: var(--admin-text-primary);
+    text-transform: uppercase;
+    font-size: 0.85rem; /* Slightly larger */
+    letter-spacing: 0.7px; /* More spacing */
+}
+
+/* Remove border from last row's cells */
+#usersTableContainer tr:last-child td,
+#publicCampaignsTableContainer tr:last-child td,
+#submissionsTableContainer tr:last-child td,
+#userCampaignsTableContainer tr:last-child td {
+    border-bottom: none;
+}
+
+#usersTableContainer td a,
+#publicCampaignsTableContainer td a,
+#submissionsTableContainer td a,
+#userCampaignsTableContainer td a {
+    color: var(--admin-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--admin-transition-smooth);
+}
+
+#usersTableContainer td a:hover,
+#publicCampaignsTableContainer td a:hover,
+#submissionsTableContainer td a:hover,
+#userCampaignsTableContainer td a:hover {
+    text-decoration: underline;
+    color: var(--admin-primary-hover);
+}
+
+.actions-cell {
+    white-space: nowrap; /* Prevent buttons from wrapping mid-button */
+}
+.actions-cell button {
+    padding: var(--space-xs) var(--space-sm); /* Adjusted padding */
+    margin-right: var(--space-xs);
+    font-size: 0.85rem;
+    border: 1px solid transparent;
+    border-radius: var(--admin-button-radius);
+    cursor: pointer;
+    transition: var(--admin-transition-smooth);
+    font-weight: 500;
+    min-width: 80px; /* Minimum width for action buttons */
+}
+
+.actions-cell button:last-child {
+    margin-right: 0;
+}
+
+.actions-cell button:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
+/* Button specific colors - ensuring good contrast on dark theme */
+.actions-cell .edit-btn { background-color: #ffb300; color: #1c1c1c; border-color: #ffb300; } /* Amber */
+.actions-cell .edit-btn:hover { background-color: #ffa000; }
+
+.actions-cell .delete-btn { background-color: var(--admin-accent); color: var(--admin-text-primary); border-color: var(--admin-accent); }
+.actions-cell .delete-btn:hover { background-color: var(--admin-accent-hover); }
+
+.actions-cell .approve-btn { background-color: var(--admin-success); color: #1c1c1c; border-color: var(--admin-success); }
+.actions-cell .approve-btn:hover { background-color: #66bb6a; } /* Darker green */
+
+.actions-cell .reject-btn { background-color: #78909c; color: var(--admin-text-primary); border-color: #78909c; } /* Blue Grey */
+.actions-cell .reject-btn:hover { background-color: #607d8b; }
+
+.actions-cell .verify-btn { background-color: #26a69a; color: var(--admin-text-primary); border-color: #26a69a; } /* Teal */
+.actions-cell .verify-btn:hover { background-color: #00897b; }
+
+
+.status-badge {
+    padding: var(--space-xxs) var(--space-sm); /* More padding */
+    border-radius: var(--admin-button-radius); /* More rounded */
+    font-size: 0.8rem; /* Larger */
+    font-weight: 600; /* Bolder */
+    text-transform: capitalize;
+    display: inline-block;
+    line-height: 1.4; /* Better line height */
+    text-align: center;
+    min-width: 100px;
+}
+
+/* Dark theme status badges */
+.status-badge.status-active, .status-badge.status-verified { background-color: var(--admin-success-light-bg); color: var(--admin-success); border: 1px solid var(--admin-success); }
+.status-badge.status-pending_review, .status-badge.status-pending_verification { background-color: var(--admin-warning-light-bg); color: var(--admin-warning-text); border: 1px solid var(--admin-warning); }
+.status-badge.status-rejected { background-color: var(--admin-accent-light-bg); color: var(--admin-accent); border: 1px solid var(--admin-accent); }
+.status-badge.status-completed { background-color: rgba(102, 163, 210, 0.15); color: var(--admin-primary); border: 1px solid var(--admin-primary); } /* Using primary color */
+.status-badge.status-unknown, .status-badge.status-archived { background-color: rgba(120, 144, 156, 0.2); color: var(--admin-text-disabled); border: 1px solid var(--admin-text-disabled); }
+
+
+/* Toast Notifications */
+#adminToastContainer {
+  position: fixed;
+  bottom: var(--space-lg); /* Increased from bottom */
+  right: var(--space-lg); /* Increased from right */
+  z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md); /* Increased gap */
+  width: auto;
+  max-width: 420px; /* Wider */
+}
+
+.admin-toast {
+  background-color: var(--admin-card-bg); /* Darker background */
+  color: var(--admin-text-primary);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--admin-button-radius); /* More rounded */
+  box-shadow: var(--admin-shadow-lg); /* Enhanced shadow */
+  opacity: 0;
+  transform: translateX(110%); /* Start further out */
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+  min-width: 320px;
+  font-size: 0.95rem; /* Larger font */
+  border-left: 5px solid var(--admin-primary); /* Thicker border */
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--admin-border-color); /* Add main border */
+}
+
+.admin-toast.show { opacity: 1; transform: translateX(0); }
+.admin-toast-success { border-left-color: var(--admin-success); }
+.admin-toast-error { border-left-color: var(--admin-accent); }
+.admin-toast-info { border-left-color: var(--admin-primary); }
+
+/* Responsive adjustments */
+@media (max-width: 992px) { /* Wider breakpoint for sidebar changes */
+    .admin-sidebar {
+        width: 240px; /* Narrower for smaller screens */
+    }
+     .admin-main-content {
+        padding: var(--space-lg);
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-sidebar {
+        /* Example: Could be hidden or transformed for mobile */
+        /* width: 0; transform: translateX(-100%); position: fixed; z-index:100; */
+        /* For simplicity, keeping it visible but narrower if not implementing toggle */
+         width: 60px; /* Icon only sidebar */
+    }
+    /* .admin-sidebar .admin-logo span, .admin-sidebar .admin-menu button span {
+        display: none; // Hide text in icon-only mode
+        This would require JS to toggle a class and more CSS to handle icon centering
+    } */
+    .admin-logo img { margin-right: 0; } /* if text is hidden */
+
+    .admin-main-content {
+        padding: var(--space-md);
+    }
+    .admin-stats-cards, .admin-charts-grid {
+        grid-template-columns: 1fr; /* Stack cards/charts */
+        gap: var(--space-md);
+    }
+    .admin-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .admin-filters input[type="text"], .admin-filters select {
+        min-width: 100%; /* Full width on mobile */
+    }
+    #adminToastContainer {
+        right: var(--space-md);
+        bottom: var(--space-md);
+        left: var(--space-md); /* Allow full width if needed */
+        max-width: none; /* Override max-width for small screens */
+        width: auto; /* Adjust to content or full width based on left/right */
+    }
+    .admin-main-content h1 { font-size: 1.7rem; }
+    .admin-main-content h2 { font-size: 1.4rem; }
+
+    #admin-login-container {
+        padding: var(--space-lg) var(--space-md);
+        max-width: calc(100% - var(--space-lg));
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px; /* Reduce font slightly on very small screens */
+    }
+    .admin-main-content {
+        padding: var(--space-sm);
+    }
+     #admin-login-container {
+        padding: var(--space-md) var(--space-sm);
+    }
+    .admin-menu button {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 0.9rem;
+    }
+    .admin-menu button i {
+        width: 20px;
+        height: 20px;
+        gap: var(--space-sm);
+    }
+}
