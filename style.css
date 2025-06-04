@@ -342,3 +342,19 @@ body {
 .hidden {
   display: none !important; /* Ensure it overrides other display properties */
 }
+
+/* Header for login page */
+.site-header {
+  background: var(--background-container);
+  padding: 0.5rem 1rem;
+  text-align: right;
+}
+.site-header a {
+  color: var(--text-primary);
+  margin-left: 1rem;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.site-header a:hover {
+  color: var(--accent-primary);
+}
